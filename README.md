@@ -22,8 +22,8 @@ The ```$input``` will have two directories:
 - res: unzipped content of the submission.  
   The example scoring program expects a ```prediction.csv``` file to be present.
 
-The ```$output``` expects output of ```score.txt``` with the format of ```key: value\n```, for example:
-```score.txt
+The ```$output``` expects output of ```scores.txt``` with the format of ```key: value\n```, for example:
+```scores.txt
 duration: 0,
 roc_auc: 0.2,
 accuracy: 0.5
@@ -83,3 +83,36 @@ terms.html
 
 ## Submissions
 A submission is a zip file containing ```prediction.csv``` as described above.
+
+## Development
+
+Make sure you are using python 3 (3.7) and not python 2.
+
+Create a virtual environment:
+```bash
+python -m venv .venv
+source .venv/bin/activate
+```
+
+Install required dependencies:
+```
+pip install pandas numpy scikit-learn
+```
+
+Prepare input directory with the following structure:
+```
+ref
+- truth.csv
+res
+- prediction.csv
+```
+
+Create an output directory for results.
+
+Run the script
+```bash
+python scoring_program/scoring.py INPUT_DIR OUTPUT_DIR
+```
+
+If all is well ```scores.txt``` is created and contains scores.  
+Now edit ```scoring.py```, change ```truth.csv``` and ```prediction.csv``` and run again.
